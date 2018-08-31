@@ -53,7 +53,7 @@ $ ./manage.py runserver
 
 ## Running it
 
-At this point, the app should be up and running, unless I forgot a step in these instructions. If you visit the home page of this app you should see it greet you with "Welcome to Test Jive, Guest."
+At this point, the app should be up and running, unless I forgot a step in these instructions. If you visit the home page of this app you should see it greet you with "Welcome to Fake Jive, Guest."
 
 In order to get the login and logout buttons actually working with the IDP, you'll need to add SP metadata for this app to your IDP. In the case of EX's Simplesamlphp IDP, you just need to checkout the `SNAKEX-70` branch of ex-infra-config and deploy ex-plan/simplesamlphp to your web-static VM. From your ex-infra-config directory:
 
