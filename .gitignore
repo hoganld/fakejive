@@ -1,0 +1,3 @@
+saml/idp_metadata.xml
+*.pyc
+*.sqlite3
