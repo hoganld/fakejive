@@ -42,9 +42,13 @@ $ ./manage.py migrate
 $ ./manage.py createsuperuser
 ```
 
-8. Start the app with runserver:
+8. Start the app in HTTPS mode, with django-sslserver: 
 ```
-$ ./manage.py runserver
+$ ./manage.py runsslserver
+```
+Note that by default this will use a self-signed certificate, and your browser will yell and scream about this. Either just click through the warnings, or generate a real cert using Let's Encrypt and use that:
+```
+$ ./manage.py runsslserver --certificate /path/to/certificate.crt --key /path/to/private.key
 ```
 
 9. Log in to the Django Admin and create a user in the local app that corresponds to the Snakex/Plan *user* you are going to test with. Note the difference between a Snakex `User` and `Person` is relevant here. For your new user here, you'll want to use the username of the Snakex user, not the person. If PHPPlan created this user automatically via the Snakex API, this might be an integer rather than a username-looking string. You'll need to confer with your Snakex DB for the right value here.
