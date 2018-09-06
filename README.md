@@ -23,28 +23,37 @@ $ openssl req -new -x509 -key fakejive.key -out fakejive.crt
 (venv)$ pip install -r requirements.txt
 ```
 
-5. Run the migrations to generate your database.
+5. Install the xmlsec1 library. This will depend on your platform. On Linux, you should be able to install the package with `apt` or `yum`. On a Mac, you can install it with Homebrew:
+```
+$ brew install libxmlsec1
+```
+You'll also need to make sure you have the correct absolute path to the `xmlsec1` binary in `settings.py`. The default is `/usr/local/bin/xmlsec1`, which should be correct if you installed it on Mac using Homebrew. On Linux, I've always seen it under `/usr/bin/xmlsec1`. If in doubt, you can check the path like so:
+```
+$ which xmlsec1
+```
+
+6. Run the migrations to generate your database.
 ```
 $ ./manage.py migrate
 ```
 
-6. Create a superuser
+7. Create a superuser
 ```
 $ ./manage.py createsuperuser
 ```
 
-7. Start the app with runserver:
+8. Start the app with runserver:
 ```
 $ ./manage.py runserver
 ```
 
-8. Log in to the Django Admin and create a user in the local app that corresponds to the Snakex/Plan *user* you are going to test with. Note the difference between a Snakex `User` and `Person` is relevant here. For your new user here, you'll want to use the username of the Snakex user, not the person. If PHPPlan created this user automatically via the Snakex API, this might be an integer rather than a username-looking string. You'll need to confer with your Snakex DB for the right value here.
+9. Log in to the Django Admin and create a user in the local app that corresponds to the Snakex/Plan *user* you are going to test with. Note the difference between a Snakex `User` and `Person` is relevant here. For your new user here, you'll want to use the username of the Snakex user, not the person. If PHPPlan created this user automatically via the Snakex API, this might be an integer rather than a username-looking string. You'll need to confer with your Snakex DB for the right value here.
 
-9. Log out of the Django Admin, so that you are unauthenticated.
+10. Log out of the Django Admin, so that you are unauthenticated.
 
 ## Running it
 
-At this point, the app should be up and running, unless I forgot a step in these instructions. If you visit the home page of this app you should see it greet you with "Welcome to Test Jive, Guest."
+At this point, the app should be up and running, unless I forgot a step in these instructions. If you visit the home page of this app you should see it greet you with "Welcome to Fake Jive, Guest."
 
 In order to get the login and logout buttons actually working with the IDP, you'll need to add SP metadata for this app to your IDP. In the case of EX's Simplesamlphp IDP, you just need to checkout the `SNAKEX-70` branch of ex-infra-config and deploy ex-plan/simplesamlphp to your web-static VM. From your ex-infra-config directory:
 
