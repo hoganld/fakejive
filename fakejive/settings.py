@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sslserver',
     'djangosaml2',
     'index',
 ]
@@ -133,7 +134,7 @@ LOGIN_URL = '/saml/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-SAML_LOGOUT_REQUEST_PERFERRED_BINDING = saml2.BINDING_HTTP_POST
+SAML_LOGOUT_REQUEST_PREFERRED_BINDING = saml2.BINDING_HTTP_REDIRECT
 SAML_CREATE_UNKNOWN_USER = False
 SAML_DIR = os.path.join(BASE_DIR, 'saml')
 IDP_URL = 'https://www.exdev.test/saml/saml2/idp/'
@@ -141,7 +142,7 @@ IDP_URL = 'https://www.exdev.test/saml/saml2/idp/'
 SAML_CONFIG = {
     # CHANGE THIS FOR YOUR SYSTEM
     'xmlsec_binary': '/usr/local/bin/xmlsec1',
-    'entityid': 'http://localhost:8000/saml/metadata/',
+    'entityid': 'https://localhost:8000/saml/metadata/',
     'attribute_map_dir': os.path.join(SAML_DIR, 'attributemaps'),
     'service': {
         'sp' : {
@@ -149,13 +150,13 @@ SAML_CONFIG = {
             'name_id_format': saml2.saml.NAMEID_FORMAT_PERSISTENT,
             'endpoints': {
                 'assertion_consumer_service': [
-                    ('http://localhost:8000/saml/acs/',
+                    ('https://localhost:8000/saml/acs/',
                      saml2.BINDING_HTTP_POST),
                 ],
                 'single_logout_service': [
-                    ('http://localhost:8000/saml/ls/',
+                    ('https://localhost:8000/saml/ls/',
                      saml2.BINDING_HTTP_REDIRECT),
-                    ('http://localhost:8000/saml/ls/post/',
+                    ('https://localhost:8000/saml/ls/post/',
                      saml2.BINDING_HTTP_POST),
                 ],
             },

@@ -24,5 +24,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^saml/', include('djangosaml2.urls')),
     url(r'^samltest/', echo_attributes),
-    url(r'^/?$', index),
+    url(r'^$', index),
 ]
