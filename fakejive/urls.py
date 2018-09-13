@@ -16,13 +16,10 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from djangosaml2.views import echo_attributes
-
 from index.views import index
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^saml/', include('djangosaml2.urls')),
-    url(r'^samltest/', echo_attributes),
+    url(r'^saml/', include('samltime.urls')),
     url(r'^$', index),
 ]

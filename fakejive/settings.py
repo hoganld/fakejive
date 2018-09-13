@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'sslserver',
     'djangosaml2',
     'index',
+    'samltime',
 ]
 
 MIDDLEWARE = [
@@ -138,6 +139,7 @@ SAML_LOGOUT_REQUEST_PREFERRED_BINDING = saml2.BINDING_HTTP_REDIRECT
 SAML_CREATE_UNKNOWN_USER = False
 SAML_DIR = os.path.join(BASE_DIR, 'saml')
 IDP_URL = 'https://www.exdev.test/saml/saml2/idp/'
+ALLOWED_LOGIN_REDIRECT_HOSTS = ['api.exdev.test',]
 
 SAML_CONFIG = {
     # CHANGE THIS FOR YOUR SYSTEM
